@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><title>Edit Test</title></head>
+<body>
+    <h1>Edit Test</h1>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+        {% for m in messages %}
+          <li>{{ m }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <form method="post">
+        <!-- test is row tuple: id, tank_id, date_observed, ammonia, nitrite, nitrate, ph, salinity, temperature, phosphate, calcium, notes -->
+        <label>Date observed:</label><br>
+        <input name="date_observed" type="date" value="{{ test[2] }}" required><br><br>
+
+        <label>Ammonia:</label><br>
+        <input name="ammonia" type="number" step="0.01" value="{{ test[3] }}" required><br><br>
+
+        <label>Nitrite:</label><br>
+        <input name="nitrite" type="number" step="0.01" value="{{ test[4] }}" required><br><br>
+
+        <label>Nitrate:</label><br>
+        <input name="nitrate" type="number" step="0.01" value="{{ test[5] }}" required><br><br>
+
+        <label>pH:</label><br>
+        <input name="ph" type="number" step="0.01" value="{{ test[6] }}" required><br><br>
+
+        <label>Salinity:</label><br>
+        <input name="salinity" type="number" step="0.01" value="{{ test[7] }}" required><br><br>
+
+        <label>Temperature:</label><br>
+        <input name="temperature" type="number" step="0.1" value="{{ test[8] or '' }}"><br><br>
+
+        <label>Phosphate:</label><br>
+        <input name="phosphate" type="number" step="0.01" value="{{ test[9] or '' }}"><br><br>
+
+        <label>Calcium:</label><br>
+        <input name="calcium" type="number" step="0.01" value="{{ test[10] or '' }}"><br><br>
+
+        <label>Notes:</label><br>
+        <textarea name="notes" rows="4" cols="40">{{ test[11] or '' }}</textarea><br><br>
+
+        <button type="submit">Save Changes</button>
+    </form>
+
+    <p><a href="{{ url_for('dashboard') }}">Back</a></p>
+</body>
+</html>
