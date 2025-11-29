@@ -5,12 +5,10 @@ from scripts.water_tests import water_bp, init_water_tests
 
 app, mysql = create_app()
 
-# Initialize each module’s routes
 init_auth(mysql)
 init_dashboard(mysql)
 init_water_tests(mysql)
 
-# Register blueprints
 app.register_blueprint(auth_bp)
 app.register_blueprint(dashboard_bp)
 app.register_blueprint(water_bp)
