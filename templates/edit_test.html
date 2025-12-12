@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-  <meta charset="utf-8"><title>Edit Test</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Edit Water Test</title>
 </head>
 <body>
-    <h1>Edit Test</h1>
-
+    <h1>Edit Water Test</h1>
+    // display flash messages
     {% with messages = get_flashed_messages() %}
       {% if messages %}
         <ul>
@@ -16,41 +17,42 @@
         </ul>
       {% endif %}
     {% endwith %}
+    
+    // form to edit water test details
+    <form method="post">
+        <label>Date observed (YYYY-MM-DD):</label><br>
+        <input name="date_observed" type="date" value="{{ test.date_observed }}" required><br><br>
 
-    <form method="post" action="{{ url_for('water_tests.edit_test', test_id=test[0]) }}">
-        <label>Date observed:</label><br>
-        <input name="date_observed" type="date" value="{{ test[2] }}" required><br><br>
+        <label>Ammonia (ppm):</label><br>
+        <input name="ammonia" type="number" step="0.01" value="{{ test.ammonia }}"><br><br>
 
-        <label>Ammonia:</label><br>
-        <input name="ammonia" type="number" step="0.01" value="{{ test[3] }}" required><br><br>
+        <label>Nitrite (ppm):</label><br>
+        <input name="nitrite" type="number" step="0.01" value="{{ test.nitrite }}"><br><br>
 
-        <label>Nitrite:</label><br>
-        <input name="nitrite" type="number" step="0.01" value="{{ test[4] }}" required><br><br>
-
-        <label>Nitrate:</label><br>
-        <input name="nitrate" type="number" step="0.01" value="{{ test[5] }}" required><br><br>
+        <label>Nitrate (ppm):</label><br>
+        <input name="nitrate" type="number" step="0.01" value="{{ test.nitrate }}"><br><br>
 
         <label>pH:</label><br>
-        <input name="ph" type="number" step="0.01" value="{{ test[6] }}" required><br><br>
+        <input name="ph" type="number" step="0.01" value="{{ test.ph }}"><br><br>
 
-        <label>Salinity:</label><br>
-        <input name="salinity" type="number" step="0.01" value="{{ test[7] }}" required><br><br>
+        <label>Salinity (ppt or SG):</label><br>
+        <input name="salinity" type="number" step="0.01" value="{{ test.salinity }}"><br><br>
 
         <label>Temperature:</label><br>
-        <input name="temperature" type="number" step="0.1" value="{{ test[8] or '' }}"><br><br>
+        <input name="temperature" type="number" step="0.1" value="{{ test.temperature }}"><br><br>
 
-        <label>Phosphate:</label><br>
-        <input name="phosphate" type="number" step="0.01" value="{{ test[9] or '' }}"><br><br>
+        <label>Phosphate (ppm):</label><br>
+        <input name="phosphate" type="number" step="0.01" value="{{ test.phosphate }}"><br><br>
 
-        <label>Calcium:</label><br>
-        <input name="calcium" type="number" step="0.01" value="{{ test[10] or '' }}"><br><br>
+        <label>Calcium (ppm):</label><br>
+        <input name="calcium" type="number" step="0.01" value="{{ test.calcium }}"><br><br>
 
         <label>Notes:</label><br>
-        <textarea name="notes" rows="4" cols="40">{{ test[11] or '' }}</textarea><br><br>
+        <textarea name="notes" rows="4" cols="40">{{ test.notes }}</textarea><br><br>
 
         <button type="submit">Save Changes</button>
     </form>
 
-    <p><a href="{{ url_for('dashboard.dashboard') }}">Back</a></p>
+    <p><a href="{{ url_for('water_tests.view_tank', tank_id=test.tank_id) }}">Back to Tank</a></p>
 </body>
 </html>

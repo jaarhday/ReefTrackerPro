@@ -2,7 +2,6 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <title>Add Tank</title>
 </head>
 <body>
@@ -16,7 +15,8 @@
         </ul>
       {% endif %}
     {% endwith %}
-
+    
+    // form to add a new tank
     <form method="post">
         <label>Tank Name:</label><br>
         <input name="tank_name" required><br><br>

@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 # load environment variables from .env file
 load_dotenv()
 
+# configuration class for the Flask app
 class Config:
     SECRET_KEY = os.environ.get("FLASK_SECRET", "replace-this-secret")
     MYSQL_HOST = os.environ.get("MYSQL_HOST", "localhost")
@@ -13,6 +14,7 @@ class Config:
     MYSQL_PASSWORD = os.environ.get("MYSQL_PASSWORD", "")
     MYSQL_DATABASE = os.environ.get("MYSQL_DATABASE", "reef_tracker")
 
+# creates and configures the Flask app and MySQL connection
 def create_app():
     app = Flask(__name__, template_folder=os.path.join(os.path.dirname(__file__), "../templates"))
     app.secret_key = Config.SECRET_KEY

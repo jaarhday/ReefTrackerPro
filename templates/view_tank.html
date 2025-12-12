@@ -2,7 +2,6 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <title>Tank View</title>
 </head>
 <body>
@@ -19,7 +18,8 @@
         </ul>
       {% endif %}
     {% endwith %}
-
+    
+    // display water tests for this tank
     <h2>Water Tests</h2>
     {% if tests %}
       <table border="1" cellpadding="6">
@@ -27,6 +27,7 @@
           <th>Date</th><th>Ammonia</th><th>Nitrite</th><th>Nitrate</th><th>pH</th><th>Salinity</th>
           <th>Temp</th><th>Phosphate</th><th>Calcium</th><th>Notes</th><th>Actions</th>
         </tr>
+        // jinja loop to list tests
         {% for r in tests %}
           <tr>
             <td>{{ r[1] }}</td>
@@ -40,7 +41,7 @@
             <td>{{ r[9] or "" }}</td>
             <td>{{ r[10] or "" }}</td>
             <td>
-              <a href="{{ url_for('water_tests.add_test', tank_id=tank_id, test_id=r[0]) }}">Edit</a> |
+              <a href="{{ url_for('water_tests.edit_test', tank_id=tank_id, test_id=r[0]) }}">Edit</a> |
               <a href="{{ url_for('water_tests.delete_test', tank_id=tank_id, test_id=r[0]) }}" onclick="return confirm('Delete this test?');">Delete</a>
             </td>
           </tr>
